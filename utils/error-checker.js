@@ -1,32 +1,31 @@
 'use strict';
 
-const validParameters = ['mix', 'numeric', 'underscore', 'uppercase', 'special']
+const parameters = {
+  uppercase: true,
+  mix: true,
+  numeric: true,
+  underscore: true,
+  special: 'string',
+}
 
 const checkForErrors = (options) => {
-  if (options.constructor !== Object) throw new TypeError('Options must be an object');
-  if (!options || Object.keys(options).length === 0) throw new SyntaxError('Options must be a non empty object');
+  let error;
 
-  Object.keys(options).forEach((value) => {
-    if(!validParameters.includes(value)) throw new TypeError(`Options object must have only valid attributes, given ${value}`)
-  })
+  (!options) ? error = new ReferenceError('options" parameter required')
+    : (options.constructor !== Object) ? error = new TypeError('The "options" parameter must be an object')
+      : (Object.keys(options).length === 0) ? error = new Error('The "options" object must have at least one valid property')
+        : null;
+
+
+  if (error) throw error;
 
   for (const key in options) {
-    if(options[key].constructor === Number || options[key].constructor === String) throw new TypeError('Option')
+    (!parameters.hasOwnProperty(key)) ? error = new TypeError(`Options object must have only valid attributes, given "${key}"`)
+      : (!(options[key].constructor === parameters[key].constructor)) ? error = new TypeError(`Option value in "${key}" is not valid type, must be ${typeof parameters[key]}`)
+        : null;
+
+    if (error) throw error;
   }
 
-  return console.log('Finish the method');
+  return options;
 }
-
-
-let obj = {
-  mix: true,
-  numeric: false,
-  underscore: 123,
-  uppercase: '456',
-  special: ['=', '|', '-'],
-  extra: ['a', '8', '_']
-}
-
-console.log(obj.first.constructor)
-
-checkForErrors(obj)
