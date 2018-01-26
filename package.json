@@ -1,0 +1,19 @@
+{
+  "name": "gen-string.js",
+  "version": "0.1.0",
+  "description": "A useful string generator for different purposes",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "string",
+    "generator",
+    "useful"
+  ],
+  "author": "MetCoder95",
+  "license": "MIT"
+}
