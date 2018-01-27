@@ -1,5 +1,4 @@
 'use strict';
-
 const parameters = {
   uppercase: true,
   mix: true,
@@ -8,7 +7,7 @@ const parameters = {
   special: 'string',
 }
 
-const checkForErrors = (options) => {
+const validator = (options) => {
   let error;
 
   (!options) ? error = new ReferenceError('options" parameter required')
@@ -29,3 +28,5 @@ const checkForErrors = (options) => {
 
   return options;
 }
+
+exports.validator = validator;
